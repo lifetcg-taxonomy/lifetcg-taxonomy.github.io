@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life TCG — Taxonomic Binder Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Mono:wght@300;400;500&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1714;
+    --paper: #f5f0e8;
+    --paper-dark: #ede7d6;
+    --accent-mammals: #8b4513;
+    --accent-birds: #2c5f5a;
+    --accent-gold: #c8922a;
+    --muted: #7a6f62;
+    --rule: #c8b89a;
+    --tag-bg: #e8dfc8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Cover */
+  .cover {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 60px 70px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,180,154,0.15);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -80px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,180,154,0.08);
+  }
+
+  .cover-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    margin-bottom: 24px;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .cover-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent-gold);
+  }
+
+  .cover-sub {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.6);
+    margin-top: 16px;
+    margin-bottom: 40px;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(200,180,154,0.2);
+  }
+
+  .cover-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cover-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--accent-gold);
+  }
+
+  .cover-stat-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.45);
+  }
+
+  /* Shelf order */
+  .shelf-section {
+    padding: 50px 60px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .shelf-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .shelf-flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  .shelf-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .shelf-binder {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    position: relative;
+  }
+
+  .shelf-binder.mammals { background: var(--accent-mammals); }
+  .shelf-binder.birds { background: var(--accent-birds); }
+
+  .shelf-binder-num {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    font-weight: 500;
+    background: var(--accent-gold);
+    color: var(--ink);
+    padding: 1px 12px;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .shelf-arrow {
+    font-size: 16px;
+    color: var(--muted);
+    padding: 0 8px;
+  }
+
+  .shelf-note {
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 16px;
+    font-family: 'Fraunces', serif;
+  }
+
+  /* Main content */
+  .content {
+    padding: 0 60px 80px;
+  }
+
+  /* Set header */
+  .set-header {
+    padding: 56px 0 0;
+    margin-bottom: 40px;
+  }
+
+  .set-header-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .set-header.birds .set-header-inner {
+    border-color: var(--accent-birds);
+  }
+
+  .set-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .set-header.mammals .set-label { color: var(--accent-mammals); }
+  .set-header.birds .set-label { color: var(--accent-birds); }
+
+  .set-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .set-count {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Order section */
+  .order-block {
+    margin-bottom: 36px;
+    break-inside: avoid;
+  }
+
+  .order-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .order-name {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .order-latin {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .order-desc {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* Card list */
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .card-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 4px 8px;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+
+  .card-row:hover { background: var(--paper-dark); }
+
+  .card-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--muted);
+    min-width: 28px;
+    text-align: right;
+  }
+
+  .card-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--rule);
+    flex-shrink: 0;
+    margin-bottom: 2px;
+  }
+
+  .card-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--ink);
+    flex: 1;
+  }
+
+  .card-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    padding: 1px 6px;
+    border-radius: 2px;
+    background: var(--tag-bg);
+    color: var(--muted);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .card-tag.promo { background: #f0e4c8; color: var(--accent-gold); }
+
+  /* Two column layout for card lists */
+  .order-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .order-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+  }
+
+  /* Intro note */
+  .intro-note {
+    background: var(--paper-dark);
+    border-left: 3px solid var(--accent-gold);
+    padding: 16px 20px;
+    margin: 32px 0;
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .intro-note strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* Page break hint */
+  .page-break {
+    border: none;
+    border-top: 1px dashed var(--rule);
+    margin: 50px 0;
+  }
+
+  /* Divider line */
+  hr.section-rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 40px 0;
+  }
+
+  /* Footer */
+  .footer {
+    background: var(--ink);
+    color: rgba(245,240,232,0.4);
+    padding: 24px 60px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media print {
+    .cover { page-break-after: always; }
+    .order-block { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div style="background: #1a1714; padding: 14px 60px; display: flex; align-items: center; gap: 16px;">
+  <a href="index.html" style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(200,180,154,0.6); text-decoration: none; display: flex; align-items: center; gap: 8px;"
+     onmouseover="this.style.color='rgba(200,180,154,1)'"
+     onmouseout="this.style.color='rgba(200,180,154,0.6)'">
+    ← Why is the Platypus First?
+  </a>
+</div>
+
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-eyebrow">Life TCG</div>
+  <div class="cover-title">Taxonomic<br><em>Binder Guide</em></div>
+  <div class="cover-sub">A filing reference for the naturalist collector</div>
+  <div class="cover-meta">
+    <div class="cover-stat">
+      <div class="cover-stat-num">120</div>
+      <div class="cover-stat-label">Mammals</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cover-stat-num">130</div>
+      <div class="cover-stat-label">Birds</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cover-stat-num">2 / 5</div>
+      <div class="cover-stat-label">Sets released</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cover-stat-num">2</div>
+      <div class="cover-stat-label">Binders (so far)</div>
+    </div>
+  </div>
+</div>
+
+<!-- SHELF ORDER -->
+<div class="shelf-section">
+  <h2>Shelf order — deep time, left to right</h2>
+  <div class="shelf-flow">
+    <div class="shelf-item">
+      <div class="shelf-binder" style="background:#4a5a3a; margin-top:12px">
+        <div class="shelf-binder-num">future</div>
+        Invertebrates
+      </div>
+    </div>
+    <div class="shelf-arrow">→</div>
+    <div class="shelf-item">
+      <div class="shelf-binder" style="background:#3a4a5a; margin-top:12px">
+        <div class="shelf-binder-num">future</div>
+        Fish
+      </div>
+    </div>
+    <div class="shelf-arrow">→</div>
+    <div class="shelf-item">
+      <div class="shelf-binder" style="background:#4a3a2a; margin-top:12px">
+        <div class="shelf-binder-num">future</div>
+        Reptiles
+      </div>
+    </div>
+    <div class="shelf-arrow">→</div>
+    <div class="shelf-item">
+      <div class="shelf-binder mammals" style="margin-top:12px">
+        <div class="shelf-binder-num">binder 1</div>
+        Mammals
+      </div>
+    </div>
+    <div class="shelf-arrow">→</div>
+    <div class="shelf-item">
+      <div class="shelf-binder birds" style="margin-top:12px">
+        <div class="shelf-binder-num">binder 2</div>
+        Birds
+      </div>
+    </div>
+  </div>
+  <div class="shelf-note">
+    Evolutionary sequence from earliest animal lineages to most recently derived. Invertebrates anchor the left; Birds (avian dinosaurs) close the right.
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content">
+
+  <div class="intro-note">
+    <strong>How to use this guide.</strong> Within each binder, file cards in the proposed order below — earliest lineage first, most recently evolved last. Read each section left to right, column by column. The order groupings serve as natural tab dividers. Card numbers refer to Life TCG set numbers.
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- MAMMALS -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="set-header mammals">
+    <div class="set-label">Binder 1</div>
+    <div class="set-header-inner">
+      <div>
+        <div class="set-title">Mammals</div>
+      </div>
+      <div class="set-count">100 core species + promos · 18 taxonomic orders</div>
+    </div>
+  </div>
+
+  <div class="intro-note" style="margin-top:0">
+    <strong>Card 0 (Earth)</strong> is the anchor card of the whole collection — file it permanently at the front of your first binder, whatever that turns out to be. <strong>Card 101 (Human)</strong> is the most recently evolved great ape — file it at the very back of the Mammals binder as a fitting bookend.
+  </div>
+
+  <div class="order-grid">
+
+    <!-- MONOTREMATA -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Monotremata</div>
+        <div class="order-latin">egg-laying mammals</div>
+      </div>
+      <div class="order-desc">The most ancient surviving mammal lineage — the only mammals that lay eggs.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">71</div><div class="card-dot"></div><div class="card-name">Duck-Billed Platypus</div></div>
+      </div>
+    </div>
+
+    <!-- MARSUPIALIA -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Marsupialia</div>
+        <div class="order-latin">pouched mammals</div>
+      </div>
+      <div class="order-desc">Diverged from placental mammals ~180 Ma. Young born at early stage, complete development in pouch.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">4</div><div class="card-dot"></div><div class="card-name">Wondiwoi Tree Kangaroo</div></div>
+        <div class="card-row"><div class="card-num">12</div><div class="card-dot"></div><div class="card-name">Northern Hairy-Nosed Wombat</div></div>
+        <div class="card-row"><div class="card-num">40</div><div class="card-dot"></div><div class="card-name">Tasmanian Devil</div></div>
+        <div class="card-row"><div class="card-num">52</div><div class="card-dot"></div><div class="card-name">Koala</div></div>
+        <div class="card-row"><div class="card-num">87</div><div class="card-dot"></div><div class="card-name">Red Kangaroo</div></div>
+      </div>
+    </div>
+
+    <!-- AFROTHERIA -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Afrotheria</div>
+        <div class="order-latin">African origin clade</div>
+      </div>
+      <div class="order-desc">A diverse superorder united by shared African ancestry: elephants, manatees, dugongs, hyraxes, sengis, aardvarks.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">92</div><div class="card-dot"></div><div class="card-name">Aardvark</div><div class="card-tag">Tubulidentata</div></div>
+        <div class="card-row"><div class="card-num">41</div><div class="card-dot"></div><div class="card-name">Gray-Faced Sengi</div><div class="card-tag">Macroscelidea</div></div>
+        <div class="card-row"><div class="card-num">76</div><div class="card-dot"></div><div class="card-name">African Elephant</div><div class="card-tag">Proboscidea</div></div>
+        <div class="card-row"><div class="card-num">22</div><div class="card-dot"></div><div class="card-name">Borneo Pygmy Elephant</div><div class="card-tag">Proboscidea</div></div>
+        <div class="card-row"><div class="card-num">36</div><div class="card-dot"></div><div class="card-name">Manatee</div><div class="card-tag">Sirenia</div></div>
+        <div class="card-row"><div class="card-num">104</div><div class="card-dot"></div><div class="card-name">Amazonian Manatee</div><div class="card-tag promo">Promo · Sirenia</div></div>
+        <div class="card-row"><div class="card-num">47</div><div class="card-dot"></div><div class="card-name">Dugong</div><div class="card-tag">Sirenia</div></div>
+      </div>
+    </div>
+
+    <!-- XENARTHRA -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Xenarthra</div>
+        <div class="order-latin">sloths, anteaters, armadillos</div>
+      </div>
+      <div class="order-desc">South American origin. Named for extra articulations in their vertebrae.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">6</div><div class="card-dot"></div><div class="card-name">Pygmy Three-Toed Sloth</div></div>
+        <div class="card-row"><div class="card-num">27</div><div class="card-dot"></div><div class="card-name">Giant Anteater</div></div>
+      </div>
+    </div>
+
+    <!-- EULIPOTYPHLA -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Eulipotyphla</div>
+        <div class="order-latin">hedgehogs, moles, shrews</div>
+      </div>
+      <div class="order-desc">Among the most basal placental orders. Small insectivores retaining many ancient traits.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">94</div><div class="card-dot"></div><div class="card-name">Hedgehog</div></div>
+        <div class="card-row"><div class="card-num">85</div><div class="card-dot"></div><div class="card-name">European Badger</div><div class="card-tag">→ Carnivora</div></div>
+      </div>
+    </div>
+
+    <!-- CHIROPTERA -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Chiroptera</div>
+        <div class="order-latin">bats</div>
+      </div>
+      <div class="order-desc">The only mammals capable of true flight. ~1,400 species — the second most species-rich mammal order.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">8</div><div class="card-dot"></div><div class="card-name">Seychelles Sheath-Tailed Bat</div></div>
+      </div>
+    </div>
+
+    <!-- PHOLIDOTA -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Pholidota</div>
+        <div class="order-latin">pangolins</div>
+      </div>
+      <div class="order-desc">Covered in keratin scales — the only scaled mammals. Closest relatives of the Carnivora.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">59</div><div class="card-dot"></div><div class="card-name">Ground Pangolin</div></div>
+      </div>
+    </div>
+
+    <!-- LAGOMORPHA -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Lagomorpha</div>
+        <div class="order-latin">rabbits, hares, pikas</div>
+      </div>
+      <div class="order-desc">Distinguished from rodents by their double upper incisors. Includes pikas, hares, and rabbits.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">19</div><div class="card-dot"></div><div class="card-name">Ili Pika</div></div>
+        <div class="card-row"><div class="card-num">97</div><div class="card-dot"></div><div class="card-name">European Hare</div></div>
+        <div class="card-row"><div class="card-num">98</div><div class="card-dot"></div><div class="card-name">Rabbit</div></div>
+      </div>
+    </div>
+
+    <!-- RODENTIA -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Rodentia</div>
+        <div class="order-latin">rodents</div>
+      </div>
+      <div class="order-desc">40% of all mammal species. Defined by a single pair of continuously-growing incisors.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">11</div><div class="card-dot"></div><div class="card-name">Vancouver Island Marmot</div></div>
+        <div class="card-row"><div class="card-num">68</div><div class="card-dot"></div><div class="card-name">Black Squirrel</div></div>
+        <div class="card-row"><div class="card-num">95</div><div class="card-dot"></div><div class="card-name">Chipmunk</div></div>
+        <div class="card-row"><div class="card-num">107</div><div class="card-dot"></div><div class="card-name">Utah Prairie Dog</div><div class="card-tag promo">Promo</div></div>
+        <div class="card-row"><div class="card-num">86</div><div class="card-dot"></div><div class="card-name">Beaver</div></div>
+        <div class="card-row"><div class="card-num">91</div><div class="card-dot"></div><div class="card-name">Porcupine</div></div>
+        <div class="card-row"><div class="card-num">78</div><div class="card-dot"></div><div class="card-name">Meerkat</div><div class="card-tag">→ Carnivora</div></div>
+        <div class="card-row"><div class="card-num">99</div><div class="card-dot"></div><div class="card-name">Mouse</div></div>
+        <div class="card-row"><div class="card-num">100</div><div class="card-dot"></div><div class="card-name">Rat</div></div>
+        <div class="card-row"><div class="card-num">96</div><div class="card-dot"></div><div class="card-name">Skunk</div><div class="card-tag">→ Carnivora</div></div>
+      </div>
+    </div>
+
+    <!-- PRIMATES -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Primates</div>
+        <div class="order-latin">primates</div>
+      </div>
+      <div class="order-desc">Strepsirrhines (lemurs) first, then tarsiers, then monkeys, then apes — from most ancient to most derived.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">24</div><div class="card-dot"></div><div class="card-name">Ring-Tailed Lemur</div><div class="card-tag">Strepsirrhini</div></div>
+        <div class="card-row"><div class="card-num">108</div><div class="card-dot"></div><div class="card-name">Aye Aye</div><div class="card-tag promo">Promo · Strepsirrhini</div></div>
+        <div class="card-row"><div class="card-num">110</div><div class="card-dot"></div><div class="card-name">Fossa</div><div class="card-tag promo">Promo · → Carnivora</div></div>
+        <div class="card-row"><div class="card-num">10</div><div class="card-dot"></div><div class="card-name">Brown Headed Spider Monkey</div><div class="card-tag">New World</div></div>
+        <div class="card-row"><div class="card-num">3</div><div class="card-dot"></div><div class="card-name">Hainan Gibbon</div><div class="card-tag">Ape</div></div>
+        <div class="card-row"><div class="card-num">57</div><div class="card-dot"></div><div class="card-name">Bornean Orangutan</div><div class="card-tag">Great Ape</div></div>
+        <div class="card-row"><div class="card-num">112</div><div class="card-dot"></div><div class="card-name">Tapanuli Orangutan</div><div class="card-tag promo">Promo · Great Ape</div></div>
+        <div class="card-row"><div class="card-num">18</div><div class="card-dot"></div><div class="card-name">Mountain Gorilla</div><div class="card-tag">Great Ape</div></div>
+        <div class="card-row"><div class="card-num">70</div><div class="card-dot"></div><div class="card-name">Chimpanzee</div><div class="card-tag">Great Ape</div></div>
+        <div class="card-row"><div class="card-num">101</div><div class="card-dot"></div><div class="card-name">Human</div><div class="card-tag">Great Ape · back</div></div>
+      </div>
+    </div>
+
+  </div><!-- end order-grid -->
+
+  <hr class="section-rule">
+
+  <!-- Carnivora — full width -->
+  <div class="order-block">
+    <div class="order-header">
+      <div class="order-name">Carnivora</div>
+      <div class="order-latin">carnivores — the largest order in the Mammals set</div>
+    </div>
+    <div class="order-desc">File within Carnivora by family: Felidae → Hyaenidae → Canidae → Ursidae → Mustelidae → Mephitidae → Procyonidae → Viverridae → Herpestidae → Pinnipedia (seals/walrus). Meerkat and Fossa are also Carnivora despite appearances.</div>
+  </div>
+
+  <div class="order-grid-3">
+
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Felidae</div>
+        <div class="order-latin">cats</div>
+      </div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">1</div><div class="card-dot"></div><div class="card-name">South China Tiger</div></div>
+        <div class="card-row"><div class="card-num">5</div><div class="card-dot"></div><div class="card-name">Amur Leopard</div></div>
+        <div class="card-row"><div class="card-num">21</div><div class="card-dot"></div><div class="card-name">Black Panther</div><div class="card-tag">morph</div></div>
+        <div class="card-row"><div class="card-num">25</div><div class="card-dot"></div><div class="card-name">Bengal Tiger</div></div>
+        <div class="card-row"><div class="card-num">32</div><div class="card-dot"></div><div class="card-name">Snow Leopard</div></div>
+        <div class="card-row"><div class="card-num">33</div><div class="card-dot"></div><div class="card-name">Cheetah</div></div>
+        <div class="card-row"><div class="card-num">38</div><div class="card-dot"></div><div class="card-name">Jaguar</div></div>
+        <div class="card-row"><div class="card-num">39</div><div class="card-dot"></div><div class="card-name">African Lion</div></div>
+        <div class="card-row"><div class="card-num">49</div><div class="card-dot"></div><div class="card-name">Canadian Lynx</div></div>
+        <div class="card-row"><div class="card-num">84</div><div class="card-dot"></div><div class="card-name">Ocelot</div></div>
+        <div class="card-row"><div class="card-num">82</div><div class="card-dot"></div><div class="card-name">Bobcat</div></div>
+        <div class="card-row"><div class="card-num">83</div><div class="card-dot"></div><div class="card-name">Black Bear</div><div class="card-tag">→ Ursidae</div></div>
+        <div class="card-row"><div class="card-num">103</div><div class="card-dot"></div><div class="card-name">Mountain Lion</div><div class="card-tag promo">Promo</div></div>
+        <div class="card-row"><div class="card-num">105</div><div class="card-dot"></div><div class="card-name">Margay</div><div class="card-tag promo">Promo</div></div>
+        <div class="card-row"><div class="card-num">113</div><div class="card-dot"></div><div class="card-name">Asiatic Lion</div><div class="card-tag promo">Promo</div></div>
+        <div class="card-row"><div class="card-num">114</div><div class="card-dot"></div><div class="card-name">Siberian Tiger</div><div class="card-tag promo">Promo</div></div>
+      </div>
+    </div>
+
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Hyaenidae + Canidae</div>
+        <div class="order-latin">hyenas + dogs</div>
+      </div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">50</div><div class="card-dot"></div><div class="card-name">Spotted Hyena</div><div class="card-tag">Hyaenidae</div></div>
+        <div class="card-row"><div class="card-num">31</div><div class="card-dot"></div><div class="card-name">African Wild Dog</div><div class="card-tag">Canidae</div></div>
+        <div class="card-row"><div class="card-num">17</div><div class="card-dot"></div><div class="card-name">Darwin's Fox</div><div class="card-tag">Canidae</div></div>
+        <div class="card-row"><div class="card-num">43</div><div class="card-dot"></div><div class="card-name">Maned Wolf</div><div class="card-tag">Canidae</div></div>
+        <div class="card-row"><div class="card-num">73</div><div class="card-dot"></div><div class="card-name">Grey Wolf</div><div class="card-tag">Canidae</div></div>
+        <div class="card-row"><div class="card-num">93</div><div class="card-dot"></div><div class="card-name">Red Fox</div><div class="card-tag">Canidae</div></div>
+        <div class="card-row"><div class="card-num">102</div><div class="card-dot"></div><div class="card-name">Arctic Fox</div><div class="card-tag promo">Promo · Canidae</div></div>
+        <div class="card-row"><div class="card-num">109</div><div class="card-dot"></div><div class="card-name">Kit Fox</div><div class="card-tag promo">Promo · Canidae</div></div>
+      </div>
+
+      <div class="order-header" style="margin-top:20px">
+        <div class="order-name">Ursidae + Ailuridae</div>
+        <div class="order-latin">bears + red panda</div>
+      </div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">34</div><div class="card-dot"></div><div class="card-name">Red Panda</div><div class="card-tag">Ailuridae</div></div>
+        <div class="card-row"><div class="card-num">45</div><div class="card-dot"></div><div class="card-name">Polar Bear</div><div class="card-tag">Ursidae</div></div>
+        <div class="card-row"><div class="card-num">65</div><div class="card-dot"></div><div class="card-name">Brown Bear</div><div class="card-tag">Ursidae</div></div>
+        <div class="card-row"><div class="card-num">83</div><div class="card-dot"></div><div class="card-name">Black Bear</div><div class="card-tag">Ursidae</div></div>
+        <div class="card-row"><div class="card-num">115</div><div class="card-dot"></div><div class="card-name">Spirit Bear</div><div class="card-tag promo">Promo · Ursidae</div></div>
+        <div class="card-row"><div class="card-num">23</div><div class="card-dot"></div><div class="card-name">Giant Panda</div><div class="card-tag">Ursidae</div></div>
+        <div class="card-row"><div class="card-num">118</div><div class="card-dot"></div><div class="card-name">Giant Panda (FA)</div><div class="card-tag promo">Promo</div></div>
+        <div class="card-row"><div class="card-num">119</div><div class="card-dot"></div><div class="card-name">Qinling Panda</div><div class="card-tag promo">Promo</div></div>
+        <div class="card-row"><div class="card-num">120</div><div class="card-dot"></div><div class="card-name">Giant Albino Panda</div><div class="card-tag promo">Promo</div></div>
+      </div>
+    </div>
+
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Mustelidae + kin</div>
+        <div class="order-latin">weasel family</div>
+      </div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">14</div><div class="card-dot"></div><div class="card-name">Black-Footed Ferret</div></div>
+        <div class="card-row"><div class="card-num">29</div><div class="card-dot"></div><div class="card-name">Giant Otter</div></div>
+        <div class="card-row"><div class="card-num">46</div><div class="card-dot"></div><div class="card-name">Wolverine</div></div>
+        <div class="card-row"><div class="card-num">61</div><div class="card-dot"></div><div class="card-name">Sea Otter</div></div>
+        <div class="card-row"><div class="card-num">60</div><div class="card-dot"></div><div class="card-name">Honey Badger</div></div>
+        <div class="card-row"><div class="card-num">85</div><div class="card-dot"></div><div class="card-name">European Badger</div></div>
+        <div class="card-row"><div class="card-num">66</div><div class="card-dot"></div><div class="card-name">European Pine Marten</div></div>
+        <div class="card-row"><div class="card-num">96</div><div class="card-dot"></div><div class="card-name">Skunk</div><div class="card-tag">Mephitidae</div></div>
+        <div class="card-row"><div class="card-num">13</div><div class="card-dot"></div><div class="card-name">Cozumel Raccoon</div><div class="card-tag">Procyonidae</div></div>
+      </div>
+
+      <div class="order-header" style="margin-top:20px">
+        <div class="order-name">Herpestidae + Viverridae</div>
+        <div class="order-latin">mongooses + civets</div>
+      </div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">78</div><div class="card-dot"></div><div class="card-name">Meerkat</div><div class="card-tag">Herpestidae</div></div>
+        <div class="card-row"><div class="card-num">110</div><div class="card-dot"></div><div class="card-name">Fossa</div><div class="card-tag promo">Promo · Eupleridae</div></div>
+      </div>
+
+      <div class="order-header" style="margin-top:20px">
+        <div class="order-name">Pinnipedia</div>
+        <div class="order-latin">seals, sea lions, walrus</div>
+      </div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">58</div><div class="card-dot"></div><div class="card-name">Baikal Seal</div></div>
+        <div class="card-row"><div class="card-num">63</div><div class="card-dot"></div><div class="card-name">Northern Elephant Seal</div></div>
+        <div class="card-row"><div class="card-num">69</div><div class="card-dot"></div><div class="card-name">Walrus</div></div>
+      </div>
+    </div>
+
+  </div><!-- end order-grid-3 -->
+
+  <hr class="section-rule">
+
+  <div class="order-grid">
+
+    <!-- PERISSODACTYLA -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Perissodactyla</div>
+        <div class="order-latin">odd-toed ungulates</div>
+      </div>
+      <div class="order-desc">Horses, rhinos, tapirs. Weight borne on the middle (third) digit.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">28</div><div class="card-dot"></div><div class="card-name">Baird's Tapir</div></div>
+        <div class="card-row"><div class="card-num">35</div><div class="card-dot"></div><div class="card-name">Southern White Rhino</div></div>
+        <div class="card-row"><div class="card-num">56</div><div class="card-dot"></div><div class="card-name">Wild Horse</div></div>
+        <div class="card-row"><div class="card-num">16</div><div class="card-dot"></div><div class="card-name">African Wild Ass</div></div>
+        <div class="card-row"><div class="card-num">116</div><div class="card-dot"></div><div class="card-name">Javan Rhino</div><div class="card-tag promo">Promo</div></div>
+      </div>
+    </div>
+
+    <!-- ARTIODACTYLA (non-cetacean) -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Artiodactyla</div>
+        <div class="order-latin">even-toed ungulates</div>
+      </div>
+      <div class="order-desc">Pigs, camels, deer, cattle, giraffes, hippos. Weight on digits 3 and 4. Whales evolved from within this group.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">72</div><div class="card-dot"></div><div class="card-name">Warthog</div><div class="card-tag">Suidae</div></div>
+        <div class="card-row"><div class="card-num">90</div><div class="card-dot"></div><div class="card-name">Wild Boar</div><div class="card-tag">Suidae</div></div>
+        <div class="card-row"><div class="card-num">62</div><div class="card-dot"></div><div class="card-name">Hippopotamus</div><div class="card-tag">Hippopotamidae</div></div>
+        <div class="card-row"><div class="card-num">20</div><div class="card-dot"></div><div class="card-name">Wild Bactrian Camel</div><div class="card-tag">Camelidae</div></div>
+        <div class="card-row"><div class="card-num">75</div><div class="card-dot"></div><div class="card-name">Vicuña</div><div class="card-tag">Camelidae</div></div>
+        <div class="card-row"><div class="card-num">30</div><div class="card-dot"></div><div class="card-name">Okapi</div><div class="card-tag">Giraffidae</div></div>
+        <div class="card-row"><div class="card-num">55</div><div class="card-dot"></div><div class="card-name">Giraffe</div><div class="card-tag">Giraffidae</div></div>
+        <div class="card-row"><div class="card-num">106</div><div class="card-dot"></div><div class="card-name">Reticulated Giraffe</div><div class="card-tag promo">Promo</div></div>
+        <div class="card-row"><div class="card-num">15</div><div class="card-dot"></div><div class="card-name">Hirola</div><div class="card-tag">Bovidae</div></div>
+        <div class="card-row"><div class="card-num">26</div><div class="card-dot"></div><div class="card-name">Wild Water Buffalo</div><div class="card-tag">Bovidae</div></div>
+        <div class="card-row"><div class="card-num">37</div><div class="card-dot"></div><div class="card-name">Wild Yak</div><div class="card-tag">Bovidae</div></div>
+        <div class="card-row"><div class="card-num">44</div><div class="card-dot"></div><div class="card-name">Gaur</div><div class="card-tag">Bovidae</div></div>
+        <div class="card-row"><div class="card-num">48</div><div class="card-dot"></div><div class="card-name">Alpine Ibex</div><div class="card-tag">Bovidae</div></div>
+        <div class="card-row"><div class="card-num">77</div><div class="card-dot"></div><div class="card-name">African Buffalo</div><div class="card-tag">Bovidae</div></div>
+        <div class="card-row"><div class="card-num">79</div><div class="card-dot"></div><div class="card-name">American Bison</div><div class="card-tag">Bovidae</div></div>
+        <div class="card-row"><div class="card-num">80</div><div class="card-dot"></div><div class="card-name">Zebra</div><div class="card-tag">→ Perissodactyla</div></div>
+        <div class="card-row"><div class="card-num">89</div><div class="card-dot"></div><div class="card-name">Springbok</div><div class="card-tag">Bovidae</div></div>
+        <div class="card-row"><div class="card-num">88</div><div class="card-dot"></div><div class="card-name">Reindeer</div><div class="card-tag">Cervidae</div></div>
+        <div class="card-row"><div class="card-num">67</div><div class="card-dot"></div><div class="card-name">Alaskan Moose</div><div class="card-tag">Cervidae</div></div>
+        <div class="card-row"><div class="card-num">9</div><div class="card-dot"></div><div class="card-name">Saola</div><div class="card-tag">Bovidae</div></div>
+      </div>
+    </div>
+
+    <!-- CETACEA -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Cetacea</div>
+        <div class="order-latin">whales, dolphins, porpoises</div>
+      </div>
+      <div class="order-desc">Evolved from even-toed ungulate ancestors ~50 Ma. File baleen whales (Mysticeti) before toothed whales (Odontoceti).</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">42</div><div class="card-dot"></div><div class="card-name">Blue Whale</div><div class="card-tag">Mysticeti</div></div>
+        <div class="card-row"><div class="card-num">53</div><div class="card-dot"></div><div class="card-name">Humpback Whale</div><div class="card-tag">Mysticeti</div></div>
+        <div class="card-row"><div class="card-num">117</div><div class="card-dot"></div><div class="card-name">Migaloo</div><div class="card-tag promo">Promo · Mysticeti</div></div>
+        <div class="card-row"><div class="card-num">7</div><div class="card-dot"></div><div class="card-name">Gervais Beaked Whale</div><div class="card-tag">Odontoceti</div></div>
+        <div class="card-row"><div class="card-num">74</div><div class="card-dot"></div><div class="card-name">Sperm Whale</div><div class="card-tag">Odontoceti</div></div>
+        <div class="card-row"><div class="card-num">54</div><div class="card-dot"></div><div class="card-name">Narwhal</div><div class="card-tag">Odontoceti</div></div>
+        <div class="card-row"><div class="card-num">64</div><div class="card-dot"></div><div class="card-name">Beluga</div><div class="card-tag">Odontoceti</div></div>
+        <div class="card-row"><div class="card-num">111</div><div class="card-dot"></div><div class="card-name">Yangtze Finless Porpoise</div><div class="card-tag promo">Promo · Odontoceti</div></div>
+        <div class="card-row"><div class="card-num">51</div><div class="card-dot"></div><div class="card-name">Orca</div><div class="card-tag">Odontoceti</div></div>
+        <div class="card-row"><div class="card-num">81</div><div class="card-dot"></div><div class="card-name">Bottlenose Dolphin</div><div class="card-tag">Odontoceti</div></div>
+      </div>
+    </div>
+
+  </div><!-- end order-grid -->
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- BIRDS -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="set-header birds" style="margin-top:60px">
+    <div class="set-label">Binder 2</div>
+    <div class="set-header-inner">
+      <div>
+        <div class="set-title">Birds</div>
+      </div>
+      <div class="set-count">130 species · 19 taxonomic orders</div>
+    </div>
+  </div>
+
+  <div class="intro-note" style="margin-top:0">
+    <strong>Filing logic for Birds:</strong> Palaeognathae (ratites like Emu) come first as the most ancient bird lineage. Galloanserae (fowl, ducks, geese) follow. Then Neoaves — the vast majority — ordered from most ancient to most recently derived lineages. Within families, charismatic or geographically distinctive species are noted.
+  </div>
+
+  <div class="order-grid">
+
+    <!-- PALAEOGNATHAE -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Palaeognathae</div>
+        <div class="order-latin">ratites · most ancient birds</div>
+      </div>
+      <div class="order-desc">Flightless birds (mostly) with a flat-keeled sternum. The earliest-branching lineage of living birds.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">79</div><div class="card-dot"></div><div class="card-name">Emu</div></div>
+      </div>
+    </div>
+
+    <!-- GALLOANSERAE -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Galloanserae</div>
+        <div class="order-latin">fowl + waterfowl</div>
+      </div>
+      <div class="order-desc">Chicken-like birds (Galliformes) and ducks/geese (Anseriformes). Second earliest-branching group.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">95</div><div class="card-dot"></div><div class="card-name">Grey Partridge</div><div class="card-tag">Galliformes</div></div>
+        <div class="card-row"><div class="card-num">124</div><div class="card-dot"></div><div class="card-name">Common Pheasant</div><div class="card-tag">Galliformes</div></div>
+        <div class="card-row"><div class="card-num">64</div><div class="card-dot"></div><div class="card-name">Indian Peafowl</div><div class="card-tag">Galliformes</div></div>
+        <div class="card-row"><div class="card-num">85</div><div class="card-dot"></div><div class="card-name">Greater Roadrunner</div><div class="card-tag">→ Cuculiformes</div></div>
+        <div class="card-row"><div class="card-num">88</div><div class="card-dot"></div><div class="card-name">Ross's Goose</div><div class="card-tag">Anseriformes</div></div>
+        <div class="card-row"><div class="card-num">98</div><div class="card-dot"></div><div class="card-name">Canada Goose</div><div class="card-tag">Anseriformes</div></div>
+        <div class="card-row"><div class="card-num">108</div><div class="card-dot"></div><div class="card-name">Mallard</div><div class="card-tag">Anseriformes</div></div>
+      </div>
+    </div>
+
+    <!-- SPHENISCIFORMES -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Sphenisciformes</div>
+        <div class="order-latin">penguins</div>
+      </div>
+      <div class="order-desc">Flightless seabirds of the Southern Hemisphere. File smallest to largest species.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">55</div><div class="card-dot"></div><div class="card-name">Bee Hummingbird</div><div class="card-tag">→ Trochilidae</div></div>
+        <div class="card-row"><div class="card-num">22</div><div class="card-dot"></div><div class="card-name">Galapagos Penguin</div></div>
+        <div class="card-row"><div class="card-num">72</div><div class="card-dot"></div><div class="card-name">Northern Rockhopper Penguin</div></div>
+        <div class="card-row"><div class="card-num">73</div><div class="card-dot"></div><div class="card-name">Little Penguin</div></div>
+        <div class="card-row"><div class="card-num">89</div><div class="card-dot"></div><div class="card-name">King Penguin</div></div>
+        <div class="card-row"><div class="card-num">74</div><div class="card-dot"></div><div class="card-name">Emperor Penguin</div></div>
+      </div>
+    </div>
+
+    <!-- PROCELLARIIFORMES / PELECANIFORMES -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Tubenoses + Waterbirds</div>
+        <div class="order-latin">Procellariiformes · Pelecaniformes · Suliformes</div>
+      </div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">48</div><div class="card-dot"></div><div class="card-name">Wandering Albatross</div><div class="card-tag">Procellariiformes</div></div>
+        <div class="card-row"><div class="card-num">84</div><div class="card-dot"></div><div class="card-name">Razorbill</div><div class="card-tag">Charadriiformes</div></div>
+        <div class="card-row"><div class="card-num">104</div><div class="card-dot"></div><div class="card-name">Atlantic Puffin</div><div class="card-tag">Charadriiformes</div></div>
+        <div class="card-row"><div class="card-num">13</div><div class="card-dot"></div><div class="card-name">Northern Bald Ibis</div><div class="card-tag">Pelecaniformes</div></div>
+        <div class="card-row"><div class="card-num">42</div><div class="card-dot"></div><div class="card-name">Dalmatian Pelican</div><div class="card-tag">Pelecaniformes</div></div>
+        <div class="card-row"><div class="card-num">70</div><div class="card-dot"></div><div class="card-name">Brown Pelican</div><div class="card-tag">Pelecaniformes</div></div>
+        <div class="card-row"><div class="card-num">28</div><div class="card-dot"></div><div class="card-name">Christmas Island Frigatebird</div><div class="card-tag">Suliformes</div></div>
+        <div class="card-row"><div class="card-num">46</div><div class="card-dot"></div><div class="card-name">Ascension Frigatebird</div><div class="card-tag">Suliformes</div></div>
+        <div class="card-row"><div class="card-num">60</div><div class="card-dot"></div><div class="card-name">Blue-Footed Booby</div><div class="card-tag">Suliformes</div></div>
+        <div class="card-row"><div class="card-num">66</div><div class="card-dot"></div><div class="card-name">Eurasian Bittern</div><div class="card-tag">Pelecaniformes</div></div>
+        <div class="card-row"><div class="card-num">75</div><div class="card-dot"></div><div class="card-name">Greater Flamingo</div><div class="card-tag">Phoenicopteriformes</div></div>
+      </div>
+    </div>
+
+    <!-- CICONIIFORMES / GRUIFORMES -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Storks, Cranes + Shorebirds</div>
+        <div class="order-latin">Ciconiiformes · Gruiformes · Charadriiformes</div>
+      </div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">78</div><div class="card-dot"></div><div class="card-name">White Stork</div><div class="card-tag">Ciconiiformes</div></div>
+        <div class="card-row"><div class="card-num">29</div><div class="card-dot"></div><div class="card-name">Shoebill</div><div class="card-tag">Gruiformes (rel.)</div></div>
+        <div class="card-row"><div class="card-num">11</div><div class="card-dot"></div><div class="card-name">Great Indian Bustard</div><div class="card-tag">Gruiformes</div></div>
+        <div class="card-row"><div class="card-num">52</div><div class="card-dot"></div><div class="card-name">Blue Crane</div><div class="card-tag">Gruiformes</div></div>
+        <div class="card-row"><div class="card-num">82</div><div class="card-dot"></div><div class="card-name">Bar-Tailed Godwit</div><div class="card-tag">Charadriiformes</div></div>
+        <div class="card-row"><div class="card-num">93</div><div class="card-dot"></div><div class="card-name">Common Gull</div><div class="card-tag">Charadriiformes</div></div>
+        <div class="card-row"><div class="card-num">97</div><div class="card-dot"></div><div class="card-name">Dunlin</div><div class="card-tag">Charadriiformes</div></div>
+        <div class="card-row"><div class="card-num">103</div><div class="card-dot"></div><div class="card-name">Northern Lapwing</div><div class="card-tag">Charadriiformes</div></div>
+        <div class="card-row"><div class="card-num">87</div><div class="card-dot"></div><div class="card-name">Arctic Tern</div><div class="card-tag">Charadriiformes</div></div>
+        <div class="card-row"><div class="card-num">76</div><div class="card-dot"></div><div class="card-name">Mute Swan</div><div class="card-tag">Anseriformes</div></div>
+      </div>
+    </div>
+
+    <!-- ACCIPITRIFORMES + FALCONIFORMES -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Raptors</div>
+        <div class="order-latin">Accipitriformes · Falconiformes · Cathartiformes</div>
+      </div>
+      <div class="order-desc">Hawks, eagles, falcons, and New World vultures. Falcons are actually more closely related to parrots than to hawks.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">16</div><div class="card-dot"></div><div class="card-name">California Condor</div><div class="card-tag">Cathartiformes</div></div>
+        <div class="card-row"><div class="card-num">35</div><div class="card-dot"></div><div class="card-name">Andean Condor</div><div class="card-tag">Cathartiformes</div></div>
+        <div class="card-row"><div class="card-num">17</div><div class="card-dot"></div><div class="card-name">Philippine Eagle</div><div class="card-tag">Accipitridae</div></div>
+        <div class="card-row"><div class="card-num">58</div><div class="card-dot"></div><div class="card-name">Harpy Eagle</div><div class="card-tag">Accipitridae</div></div>
+        <div class="card-row"><div class="card-num">65</div><div class="card-dot"></div><div class="card-name">Golden Eagle</div><div class="card-tag">Accipitridae</div></div>
+        <div class="card-row"><div class="card-num">68</div><div class="card-dot"></div><div class="card-name">African Fish-Eagle</div><div class="card-tag">Accipitridae</div></div>
+        <div class="card-row"><div class="card-num">69</div><div class="card-dot"></div><div class="card-name">Bald Eagle</div><div class="card-tag">Accipitridae</div></div>
+        <div class="card-row"><div class="card-num">50</div><div class="card-dot"></div><div class="card-name">Martial Eagle</div><div class="card-tag">Accipitridae</div></div>
+        <div class="card-row"><div class="card-num">59</div><div class="card-dot"></div><div class="card-name">Red Kite</div><div class="card-tag">Accipitridae</div></div>
+        <div class="card-row"><div class="card-num">77</div><div class="card-dot"></div><div class="card-name">Osprey</div><div class="card-tag">Pandionidae</div></div>
+        <div class="card-row"><div class="card-num">80</div><div class="card-dot"></div><div class="card-name">Western Marsh Harrier</div><div class="card-tag">Accipitridae</div></div>
+        <div class="card-row"><div class="card-num">92</div><div class="card-dot"></div><div class="card-name">Eurasian Buzzard</div><div class="card-tag">Accipitridae</div></div>
+        <div class="card-row"><div class="card-num">96</div><div class="card-dot"></div><div class="card-name">Black Kite</div><div class="card-tag">Accipitridae</div></div>
+        <div class="card-row"><div class="card-num">91</div><div class="card-dot"></div><div class="card-name">Bat Falcon</div><div class="card-tag">Falconidae</div></div>
+        <div class="card-row"><div class="card-num">47</div><div class="card-dot"></div><div class="card-name">Saker Falcon</div><div class="card-tag">Falconidae</div></div>
+        <div class="card-row"><div class="card-num">53</div><div class="card-dot"></div><div class="card-name">Gyrfalcon</div><div class="card-tag">Falconidae</div></div>
+        <div class="card-row"><div class="card-num">67</div><div class="card-dot"></div><div class="card-name">Peregrine Falcon</div><div class="card-tag">Falconidae</div></div>
+        <div class="card-row"><div class="card-num">86</div><div class="card-dot"></div><div class="card-name">Merlin</div><div class="card-tag">Falconidae</div></div>
+        <div class="card-row"><div class="card-num">99</div><div class="card-dot"></div><div class="card-name">Common Kestrel</div><div class="card-tag">Falconidae</div></div>
+      </div>
+    </div>
+
+    <!-- PSITTACIFORMES -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Psittaciformes</div>
+        <div class="order-latin">parrots · sister group to passerines</div>
+      </div>
+      <div class="order-desc">Parrots, macaws, parakeets, cockatoos. Closely related to songbirds — file before passerines.</div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">4</div><div class="card-dot"></div><div class="card-name">Imperial Amazon</div></div>
+        <div class="card-row"><div class="card-num">5</div><div class="card-dot"></div><div class="card-name">Bali Myna</div><div class="card-tag">→ Passeriformes</div></div>
+        <div class="card-row"><div class="card-num">7</div><div class="card-dot"></div><div class="card-name">Orange-Bellied Parrot</div></div>
+        <div class="card-row"><div class="card-num">12</div><div class="card-dot"></div><div class="card-name">Kakapo</div></div>
+        <div class="card-row"><div class="card-num">21</div><div class="card-dot"></div><div class="card-name">Sun Parakeet</div></div>
+        <div class="card-row"><div class="card-num">26</div><div class="card-dot"></div><div class="card-name">Kea</div></div>
+        <div class="card-row"><div class="card-num">27</div><div class="card-dot"></div><div class="card-name">Hyacinth Macaw</div></div>
+        <div class="card-row"><div class="card-num">30</div><div class="card-dot"></div><div class="card-name">Blue Lorikeet</div></div>
+        <div class="card-row"><div class="card-num">57</div><div class="card-dot"></div><div class="card-name">Scarlet Macaw</div></div>
+        <div class="card-row"><div class="card-num">61</div><div class="card-dot"></div><div class="card-name">White Cockatoo</div></div>
+        <div class="card-row"><div class="card-num">63</div><div class="card-dot"></div><div class="card-name">Blue-and-Yellow Macaw</div></div>
+        <div class="card-row"><div class="card-num">109</div><div class="card-dot"></div><div class="card-name">Monk Parakeet</div></div>
+      </div>
+    </div>
+
+    <!-- OWLS + NIGHTJARS -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Owls + Nightjars</div>
+        <div class="order-latin">Strigiformes · Caprimulgiformes</div>
+      </div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">37</div><div class="card-dot"></div><div class="card-name">Oriental Bay Owl</div><div class="card-tag">Tytonidae</div></div>
+        <div class="card-row"><div class="card-num">101</div><div class="card-dot"></div><div class="card-name">Common Barn Owl</div><div class="card-tag">Tytonidae</div></div>
+        <div class="card-row"><div class="card-num">15</div><div class="card-dot"></div><div class="card-name">Moheli Scops-Owl</div><div class="card-tag">Strigidae</div></div>
+        <div class="card-row"><div class="card-num">20</div><div class="card-dot"></div><div class="card-name">Long-Whiskered Owlet</div><div class="card-tag">Strigidae</div></div>
+        <div class="card-row"><div class="card-num">43</div><div class="card-dot"></div><div class="card-name">Northern Spotted Owl</div><div class="card-tag">Strigidae</div></div>
+        <div class="card-row"><div class="card-num">49</div><div class="card-dot"></div><div class="card-name">Snowy Owl</div><div class="card-tag">Strigidae</div></div>
+        <div class="card-row"><div class="card-num">100</div><div class="card-dot"></div><div class="card-name">Great Horned Owl</div><div class="card-tag">Strigidae</div></div>
+        <div class="card-row"><div class="card-num">3</div><div class="card-dot"></div><div class="card-name">New Caledonian Owlet-Nightjar</div><div class="card-tag">Caprimulgiformes</div></div>
+        <div class="card-row"><div class="card-num">38</div><div class="card-dot"></div><div class="card-name">Great Eared Nightjar</div><div class="card-tag">Caprimulgiformes</div></div>
+        <div class="card-row"><div class="card-num">40</div><div class="card-dot"></div><div class="card-name">Tawny Frogmouth</div><div class="card-tag">Caprimulgiformes</div></div>
+      </div>
+    </div>
+
+    <!-- TROGONIFORMES / CORACIIFORMES / BUCEROTIFORMES -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Kingfishers, Hornbills + Trogons</div>
+        <div class="order-latin">Coraciiformes · Bucerotiformes · Trogoniformes</div>
+      </div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">56</div><div class="card-dot"></div><div class="card-name">Resplendent Quetzal</div><div class="card-tag">Trogoniformes</div></div>
+        <div class="card-row"><div class="card-num">81</div><div class="card-dot"></div><div class="card-name">Common Kingfisher</div><div class="card-tag">Coraciiformes</div></div>
+        <div class="card-row"><div class="card-num">34</div><div class="card-dot"></div><div class="card-name">South Philippine Dwarf-Kingfisher</div><div class="card-tag">Coraciiformes</div></div>
+        <div class="card-row"><div class="card-num">62</div><div class="card-dot"></div><div class="card-name">Lilac-Breasted Roller</div><div class="card-tag">Coraciiformes</div></div>
+        <div class="card-row"><div class="card-num">102</div><div class="card-dot"></div><div class="card-name">Eurasian Hoopoe</div><div class="card-tag">Bucerotiformes</div></div>
+        <div class="card-row"><div class="card-num">23</div><div class="card-dot"></div><div class="card-name">Rufous-Headed Hornbill</div><div class="card-tag">Bucerotiformes</div></div>
+        <div class="card-row"><div class="card-num">51</div><div class="card-dot"></div><div class="card-name">Great Hornbill</div><div class="card-tag">Bucerotiformes</div></div>
+      </div>
+    </div>
+
+    <!-- PICIFORMES -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Piciformes</div>
+        <div class="order-latin">woodpeckers, toucans, barbets</div>
+      </div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">39</div><div class="card-dot"></div><div class="card-name">Toco Toucan</div><div class="card-tag">Ramphastidae</div></div>
+        <div class="card-row"><div class="card-num">45</div><div class="card-dot"></div><div class="card-name">Plate-Billed Mountain Toucan</div><div class="card-tag">Ramphastidae</div></div>
+        <div class="card-row"><div class="card-num">114</div><div class="card-dot"></div><div class="card-name">Great Spotted Woodpecker</div><div class="card-tag">Picidae</div></div>
+      </div>
+    </div>
+
+    <!-- HUMMINGBIRDS + SWIFTS -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Apodiformes</div>
+        <div class="order-latin">swifts + hummingbirds</div>
+      </div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">118</div><div class="card-dot"></div><div class="card-name">Common Swift</div><div class="card-tag">Apodidae</div></div>
+        <div class="card-row"><div class="card-num">10</div><div class="card-dot"></div><div class="card-name">Blue-Throated Hillstar</div><div class="card-tag">Trochilidae</div></div>
+        <div class="card-row"><div class="card-num">18</div><div class="card-dot"></div><div class="card-name">Short-Crested Coquette</div><div class="card-tag">Trochilidae</div></div>
+        <div class="card-row"><div class="card-num">25</div><div class="card-dot"></div><div class="card-name">Juan Fernandez Firecrown</div><div class="card-tag">Trochilidae</div></div>
+        <div class="card-row"><div class="card-num">44</div><div class="card-dot"></div><div class="card-name">Honduran Emerald</div><div class="card-tag">Trochilidae</div></div>
+        <div class="card-row"><div class="card-num">54</div><div class="card-dot"></div><div class="card-name">Rufous Sabrewing</div><div class="card-tag">Trochilidae</div></div>
+        <div class="card-row"><div class="card-num">55</div><div class="card-dot"></div><div class="card-name">Bee Hummingbird</div><div class="card-tag">Trochilidae</div></div>
+        <div class="card-row"><div class="card-num">94</div><div class="card-dot"></div><div class="card-name">Costa's Hummingbird</div><div class="card-tag">Trochilidae</div></div>
+      </div>
+    </div>
+
+    <!-- PASSERIFORMES — split across two cells -->
+    <div class="order-block" style="grid-column: span 2">
+      <div class="order-header">
+        <div class="order-name">Passeriformes</div>
+        <div class="order-latin">songbirds — the largest bird order · 60% of all bird species</div>
+      </div>
+      <div class="order-desc">File suboscines first (broadbills, tyrant flycatchers), then oscines (true songbirds) by family. The set transitions from dramatic tropical species at the rares end to familiar garden birds at the commons end — this mirrors the taxonomic order reasonably well.</div>
+
+      <div class="order-grid" style="margin-top:12px">
+        <div>
+          <div style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Suboscines + early oscines</div>
+          <div class="card-list">
+            <div class="card-row"><div class="card-num">1</div><div class="card-dot"></div><div class="card-name">Stresemann's Bristlefront</div><div class="card-tag">Rhinocryptidae</div></div>
+            <div class="card-row"><div class="card-num">90</div><div class="card-dot"></div><div class="card-name">Amazonian Royal Flycatcher</div><div class="card-tag">Tyrannidae</div></div>
+            <div class="card-row"><div class="card-num">36</div><div class="card-dot"></div><div class="card-name">Blue Bird-of-Paradise</div><div class="card-tag">Paradisaeidae</div></div>
+            <div class="card-row"><div class="card-num">2</div><div class="card-dot"></div><div class="card-name">Bahama Nuthatch</div><div class="card-tag">Sittidae</div></div>
+            <div class="card-row"><div class="card-num">14</div><div class="card-dot"></div><div class="card-name">Antioquia Brushfinch</div><div class="card-tag">Thraupidae</div></div>
+            <div class="card-row"><div class="card-num">24</div><div class="card-dot"></div><div class="card-name">Yellow-crested Helmetshrike</div><div class="card-tag">Vangidae</div></div>
+            <div class="card-row"><div class="card-num">31</div><div class="card-dot"></div><div class="card-name">Neergaard's Sunbird</div><div class="card-tag">Nectariniidae</div></div>
+            <div class="card-row"><div class="card-num">41</div><div class="card-dot"></div><div class="card-name">White-Crested Turaco</div><div class="card-tag">Musophagidae</div></div>
+            <div class="card-row"><div class="card-num">71</div><div class="card-dot"></div><div class="card-name">'I'iwi</div><div class="card-tag">Fringillidae</div></div>
+            <div class="card-row"><div class="card-num">83</div><div class="card-dot"></div><div class="card-name">White-Throated Dipper</div><div class="card-tag">Cinclidae</div></div>
+            <div class="card-row"><div class="card-num">113</div><div class="card-dot"></div><div class="card-name">Common Nightingale</div><div class="card-tag">Muscicapidae</div></div>
+            <div class="card-row"><div class="card-num">123</div><div class="card-dot"></div><div class="card-name">European Robin</div><div class="card-tag">Muscicapidae</div></div>
+            <div class="card-row"><div class="card-num">111</div><div class="card-dot"></div><div class="card-name">Eastern Bluebird</div><div class="card-tag">Turdidae</div></div>
+            <div class="card-row"><div class="card-num">115</div><div class="card-dot"></div><div class="card-name">Song Thrush</div><div class="card-tag">Turdidae</div></div>
+            <div class="card-row"><div class="card-num">126</div><div class="card-dot"></div><div class="card-name">American Robin</div><div class="card-tag">Turdidae</div></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Oscines — warblers, finches, sparrows</div>
+          <div class="card-list">
+            <div class="card-row"><div class="card-num">105</div><div class="card-dot"></div><div class="card-name">Baltimore Oriole</div><div class="card-tag">Icteridae</div></div>
+            <div class="card-row"><div class="card-num">107</div><div class="card-dot"></div><div class="card-name">Black-and-White Warbler</div><div class="card-tag">Parulidae</div></div>
+            <div class="card-row"><div class="card-num">122</div><div class="card-dot"></div><div class="card-name">Yellow-Rumped Warbler</div><div class="card-tag">Parulidae</div></div>
+            <div class="card-row"><div class="card-num">125</div><div class="card-dot"></div><div class="card-name">Red-Winged Blackbird</div><div class="card-tag">Icteridae</div></div>
+            <div class="card-row"><div class="card-num">116</div><div class="card-dot"></div><div class="card-name">Northern Cardinal</div><div class="card-tag">Cardinalidae</div></div>
+            <div class="card-row"><div class="card-num">106</div><div class="card-dot"></div><div class="card-name">Blue Jay</div><div class="card-tag">Corvidae</div></div>
+            <div class="card-row"><div class="card-num">110</div><div class="card-dot"></div><div class="card-name">Common Raven</div><div class="card-tag">Corvidae</div></div>
+            <div class="card-row"><div class="card-num">112</div><div class="card-dot"></div><div class="card-name">Canada Jay</div><div class="card-tag">Corvidae</div></div>
+            <div class="card-row"><div class="card-num">117</div><div class="card-dot"></div><div class="card-name">European Goldfinch</div><div class="card-tag">Fringillidae</div></div>
+            <div class="card-row"><div class="card-num">119</div><div class="card-dot"></div><div class="card-name">Red Crossbill</div><div class="card-tag">Fringillidae</div></div>
+            <div class="card-row"><div class="card-num">127</div><div class="card-dot"></div><div class="card-name">Common Chaffinch</div><div class="card-tag">Fringillidae</div></div>
+            <div class="card-row"><div class="card-num">120</div><div class="card-dot"></div><div class="card-name">Horned Lark</div><div class="card-tag">Alaudidae</div></div>
+            <div class="card-row"><div class="card-num">121</div><div class="card-dot"></div><div class="card-name">Common Starling</div><div class="card-tag">Sturnidae</div></div>
+            <div class="card-row"><div class="card-num">5</div><div class="card-dot"></div><div class="card-name">Bali Myna</div><div class="card-tag">Sturnidae</div></div>
+            <div class="card-row"><div class="card-num">128</div><div class="card-dot"></div><div class="card-name">Great Tit</div><div class="card-tag">Paridae</div></div>
+            <div class="card-row"><div class="card-num">129</div><div class="card-dot"></div><div class="card-name">House Sparrow</div><div class="card-tag">Passeridae</div></div>
+            <div class="card-row"><div class="card-num">130</div><div class="card-dot"></div><div class="card-name">Red-Billed Quelea</div><div class="card-tag">Ploceidae</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REMAINING NEOAVES -->
+    <div class="order-block">
+      <div class="order-header">
+        <div class="order-name">Remaining Neoaves</div>
+        <div class="order-latin">diverse orders · proposed sequence</div>
+      </div>
+      <div class="card-list">
+        <div class="card-row"><div class="card-num">19</div><div class="card-dot"></div><div class="card-name">Forest Owlet</div><div class="card-tag">→ Strigiformes</div></div>
+        <div class="card-row"><div class="card-num">6</div><div class="card-dot"></div><div class="card-name">Madagascar Pochard</div><div class="card-tag">Anseriformes</div></div>
+        <div class="card-row"><div class="card-num">8</div><div class="card-dot"></div><div class="card-name">Cebu Flowerpecker</div><div class="card-tag">Passeriformes</div></div>
+        <div class="card-row"><div class="card-num">9</div><div class="card-dot"></div><div class="card-name">Blue-Eyed Ground Dove</div><div class="card-tag">Columbiformes</div></div>
+        <div class="card-row"><div class="card-num">32</div><div class="card-dot"></div><div class="card-name">New Zealand Rock Wren</div><div class="card-tag">Passeriformes</div></div>
+        <div class="card-row"><div class="card-num">33</div><div class="card-dot"></div><div class="card-name">New Zealand Kaka</div><div class="card-tag">Psittaciformes</div></div>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- end content -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>Life TCG · Taxonomic Binder Guide</span>
+  <span>Mammals 1st Edition (120) · Birds 1st Edition (130)</span>
+  <span>Based on community print run data · 2025</span>
+</div>
+
+</body>
+</html>
